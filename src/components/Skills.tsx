@@ -19,8 +19,20 @@ const Skills = () => {
       title: 'Backend Development',
       skills: [
         { name: 'Node.js',     level: 88 },
-        { name: 'Python',      level: 85 },
+        { name: 'Java',      level: 85 },
         { name: 'MongoDb',  level: 80 },
+      ],
+    },
+    {
+      icon: <Database className="w-8 h-8 text-emerald-600" />,
+      title: 'Programming Languages',
+      skills: [
+        { name: 'Javascript',     level: 88 },
+        { name: 'Java',      level: 85 },
+        { name: 'TypeScript',  level: 50},
+        { name: 'C',  level: 80 },
+        { name: 'C++',  level: 80 },
+        { name: 'Python',  level: 60},
       ],
     },
     {
