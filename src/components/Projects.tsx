@@ -1,261 +1,131 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Zap, Users } from 'lucide-react';
-import AnimatedSection from './AnimatedSection';
+import { ExternalLink, Github } from 'lucide-react';
+import { GravityStarsBackground } from './animate-ui/components/backgrounds/gravity-stars';
 
 const Projects = () => {
   const projects = [
     {
-      id: 1,
-      title: "Codesphere – Online Collaborative Code Editor",
-      description:
-        "A web‑based collaborative code editor with real‑time cursor sharing and built‑in chat. Built using React, Node.js, WebSockets, Monaco Editor, and Docker.",
-      image:
-        "https://images.pexels.com/photos/574077/pexels-photo-574077.jpeg?auto=compress&cs=tinysrgb&w=800",
-      technologies: [
-        "React",
-        "Node.js",
-        "Express",
-        "WebSocket",
-        "Monaco Editor",
-        "Docker"
-      ],
+      title: "CodeSphere",
+      description: "A full-stack web-based code editor supporting multiple languages using Docker containers for isolated code execution. Features real-time collaborative coding rooms with multiple cursors, text synchronization, and in-room chat. Includes user authentication with JWT.",
+      technologies: ["React", "Node.js", "Express", "WebSocket", "Monaco Editor", "Docker", "AWS EC2"],
       liveUrl: "https://codesphere-4pcp.onrender.com/",
-      githubUrl:
-        "https://www.linkedin.com/posts/sahil-agarwal-6b309328a_webdevelopment-reactjs-nodejs-activity-7333770808026181635-0qtx?utm_source=share&utm_medium=member_desktop",
-      icon: <Zap className="w-6 h-6 text-purple-600" />,
-      featured: true
+      demoUrl: "https://www.linkedin.com/posts/sahil-agarwal-6b309328a_webdevelopment-reactjs-nodejs-activity-7333770808026181635-0qtx"
     },
     {
-      id: 2,
-      title: "Real‑Time Chat Application (Spring Boot)",
-      description:
-        "A full‑stack chat platform powered by Spring Boot WebSocket backend and a React client, featuring JWT‑based authentication and responsive UI.",
-      image:
-        "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800",
-      technologies: ["Spring Boot", "WebSocket", "React", "JWT", "MySQL"],
-      liveUrl: "https://github.com/Sahilagarwal623/ChatApplication",
-      githubUrl: "https://github.com/Sahilagarwal623/ChatApplication",
-      icon: <Users className="w-6 h-6 text-blue-600" />,
-      featured: false
+      title: "EventNest",
+      description: "A full-stack event booking platform with real-time seat locking using optimistic locking and database transactions. Features JWT-based authentication, organizer dashboard for event management, and cron jobs for automatic expiration of seat holds.",
+      technologies: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Prisma ORM"],
+      liveUrl: "https://booking-platform-self.vercel.app/",
+      githubUrl: "https://github.com/Sahilagarwal623/Booking-Platform"
     },
     {
-      id: 3,
-      title: "Blog Application with Node.js & EJS",
-      description:
-        "A dynamic blog platform built on Express, EJS templates, and MongoDB with user authentication and CRUD functionality.",
-      image:
-        "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800",
+      title: "Food Delivery Application",
+      description: "A full-stack food delivery web application with Google Maps API integration to simulate real-time delivery tracking. Features secure backend APIs with efficient database querying.",
+      technologies: ["Next.js", "Prisma ORM", "PostgreSQL", "Google Maps API"],
+      liveUrl: "https://food-delivery-app-5rjn.vercel.app/"
+    },
+    {
+      title: "Blog Application",
+      description: "A dynamic blog platform built with Express and EJS templates, featuring user authentication and CRUD functionality.",
       technologies: ["Node.js", "Express", "EJS", "MongoDB", "Passport.js"],
       liveUrl: "https://blogforest-ir81.onrender.com/",
-      githubUrl: "https://github.com/Sahilagarwal623/BlogApplication",
-      icon: <Zap className="w-6 h-6 text-yellow-600" />,
-      featured: false
+      githubUrl: "https://github.com/Sahilagarwal623/BlogApplication"
+    },
+    {
+      title: "Real-Time Chat Application",
+      description: "A full-stack chat platform powered by Spring Boot WebSocket backend with JWT-based authentication and responsive UI.",
+      technologies: ["Spring Boot", "WebSocket", "React", "JWT", "MySQL"],
+      githubUrl: "https://github.com/Sahilagarwal623/ChatApplication"
     }
   ];
 
-  const featuredProjects = projects.filter((p) => p.featured);
-  const otherProjects = projects.filter((p) => !p.featured);
-
   return (
-    <section id="projects" className="py-20 bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Featured Projects
+    <section id="projects" className="relative py-20 min-h-screen">
+      <GravityStarsBackground
+        className="absolute inset-0 bg-linear-to-b from-black to-gray-900 text-white"
+        starsCount={100}
+        starsSize={3}
+        starsOpacity={0.9}
+        glowIntensity={20}
+        mouseInfluence={150}
+        movementSpeed={1.5}
+      />
+      <div className="relative z-10 max-w-5xl mx-auto px-6">
+        <div className="text-center mb-14">
+          <h2 className="text-3xl font-serif text-white mb-4">
+            Projects
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            A showcase of my recent work and personal projects
+          <p className="text-gray-400 max-w-xl mx-auto">
+            A selection of recent work and personal projects
           </p>
-        </AnimatedSection>
-
-        {/* Featured Projects */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
-          {featuredProjects.map((project, index) => (
-            <AnimatedSection
-              key={project.id}
-              delay={index * 0.2}
-              direction={index % 2 === 0 ? "left" : "right"}
-            >
-              <motion.div
-                className="bg-gray-700 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-600 hover:border-blue-400 group"
-                whileHover={{ y: -10, scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="relative overflow-hidden">
-                  <motion.img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.4 }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                  <motion.div
-                    className="absolute top-4 right-4"
-                    initial={{ scale: 0, rotate: -180 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    {project.icon}
-                  </motion.div>
-                </div>
-
-                <div className="p-6">
-                  <motion.h3
-                    className="text-xl font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    {project.title}
-                  </motion.h3>
-                  <motion.p
-                    className="text-gray-300 mb-4 leading-relaxed"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    {project.description}
-                  </motion.p>
-
-                  <motion.div
-                    className="flex flex-wrap gap-2 mb-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    {project.technologies.map((tech, techIndex) => (
-                      <motion.span
-                        key={techIndex}
-                        className="px-3 py-1 bg-gray-600 text-gray-200 text-sm rounded-full"
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{
-                          duration: 0.3,
-                          delay: 0.7 + techIndex * 0.05
-                        }}
-                        viewport={{ once: true }}
-                        whileHover={{ scale: 1.1 }}
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                  </motion.div>
-
-                  <motion.div
-                    className="flex space-x-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <motion.a
-                      href={project.liveUrl}
-                      className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors"
-                      whileHover={{ scale: 1.05, x: 5 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <ExternalLink size={16} />
-                      <span className="text-sm font-medium">Live Demo</span>
-                    </motion.a>
-                    <motion.a
-                      href={project.githubUrl}
-                      className="flex items-center space-x-2 text-gray-300 hover:text-gray-200 transition-colors"
-                      whileHover={{ scale: 1.05, x: 5 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Github size={16} />
-                      <span className="text-sm font-medium">Source Code</span>
-                    </motion.a>
-                  </motion.div>
-                </div>
-              </motion.div>
-            </AnimatedSection>
-          ))}
         </div>
 
-        {/* Other Projects */}
-        <AnimatedSection className="mb-8" delay={0.6}>
-          <h3 className="text-2xl font-semibold text-white mb-8 text-center">
-            Other Projects
-          </h3>
-        </AnimatedSection>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          {otherProjects.map((project, index) => (
-            <AnimatedSection
-              key={project.id}
-              delay={0.8 + index * 0.1}
-              direction={index % 2 === 0 ? "left" : "right"}
+        <div className="space-y-6">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              className="bg-gray-800/50 rounded-lg p-6 border border-gray-700 backdrop-blur-sm"
+              initial={{ scale: 0.95, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              viewport={{ once: true }}
             >
-              <motion.div
-                className="bg-gray-700 rounded-lg p-6 hover:bg-gray-600 transition-colors duration-300 group"
-                whileHover={{ y: -5, scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="flex items-center mb-3">
-                  <motion.div
-                    initial={{ scale: 0, rotate: -180 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    viewport={{ once: true }}
-                  >
-                    {project.icon}
-                  </motion.div>
-                  <h4 className="text-lg font-semibold text-white ml-3 group-hover:text-blue-400 transition-colors">
-                    {project.title}
-                  </h4>
-                </div>
-
-                <p className="text-gray-300 mb-4 text-sm leading-relaxed">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, techIndex) => (
-                    <motion.span
-                      key={techIndex}
-                      className="px-2 py-1 bg-gray-600 text-gray-200 text-xs rounded-full"
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.3,
-                        delay: 0.5 + techIndex * 0.05
-                      }}
-                      viewport={{ once: true }}
-                      whileHover={{ scale: 1.1 }}
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3">
+                <h3 className="text-lg font-medium text-white mb-2 md:mb-0">
+                  {project.title}
+                </h3>
+                <div className="flex space-x-3">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-sm text-gray-400 hover:text-white"
                     >
-                      {tech}
-                    </motion.span>
-                  ))}
+                      <ExternalLink size={14} className="mr-1" />
+                      Live
+                    </a>
+                  )}
+                  {project.demoUrl && (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-sm text-gray-400 hover:text-white"
+                    >
+                      <ExternalLink size={14} className="mr-1" />
+                      Demo
+                    </a>
+                  )}
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-sm text-gray-400 hover:text-white"
+                    >
+                      <Github size={14} className="mr-1" />
+                      Code
+                    </a>
+                  )}
                 </div>
+              </div>
 
-                <div className="flex space-x-4">
-                  <motion.a
-                    href={project.liveUrl}
-                    className="flex items-center space-x-1 text-blue-400 hover:text-blue-300 transition-colors"
-                    whileHover={{ scale: 1.05, x: 3 }}
-                    whileTap={{ scale: 0.95 }}
+              <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                {project.description}
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2 py-0.5 bg-gray-700/50 text-gray-400 text-xs rounded border border-gray-600"
                   >
-                    <ExternalLink size={14} />
-                    <span className="text-xs font-medium">Demo</span>
-                  </motion.a>
-                  <motion.a
-                    href={project.githubUrl}
-                    className="flex items-center space-x-1 text-gray-300 hover:text-gray-200 transition-colors"
-                    whileHover={{ scale: 1.05, x: 3 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Github size={14} />
-                    <span className="text-xs font-medium">Code</span>
-                  </motion.a>
-                </div>
-              </motion.div>
-            </AnimatedSection>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
