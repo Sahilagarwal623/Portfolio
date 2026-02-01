@@ -8,7 +8,7 @@ const Projects = () => {
       title: "CodeSphere",
       description: "A full-stack web-based code editor supporting multiple languages using Docker containers for isolated code execution. Features real-time collaborative coding rooms with multiple cursors, text synchronization, and in-room chat. Includes user authentication with JWT.",
       technologies: ["React", "Node.js", "Express", "WebSocket", "Monaco Editor", "Docker", "AWS EC2"],
-      liveUrl: "https://codesphere-4pcp.onrender.com/",
+      liveUrl: "https://code-sphere-alpha.vercel.app/",
       demoUrl: "https://www.linkedin.com/posts/sahil-agarwal-6b309328a_webdevelopment-reactjs-nodejs-activity-7333770808026181635-0qtx"
     },
     {
